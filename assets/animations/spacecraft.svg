@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-260 -50 360 100">
+<defs><linearGradient id="tr" x1="1" x2="0"><stop offset="0" stop-color="#38BDF8" stop-opacity=".9"/><stop offset=".4" stop-color="#FF6B35" stop-opacity=".55"/><stop offset="1" stop-color="#FF6B35" stop-opacity="0"/></linearGradient></defs>
+<path d="M-85 -6 L-255 -2 L-255 2 L-85 6 Z" fill="url(#tr)"/>
+<g id="ship">
+<path d="M-70 0 L-48 -9 L40 -9 L78 0 L40 9 L-48 9 Z" fill="#CBD5E1"/>
+<path d="M-70 0 L-48 -9 L-48 9 Z" fill="#64748B"/>
+<path d="M40 -9 L78 0 L40 9 Z" fill="#94A3B8"/>
+<rect x="-30" y="-34" width="52" height="22" rx="2" fill="#0B1220" stroke="#38BDF8" stroke-width="1.5"/>
+<rect x="-30" y="12" width="52" height="22" rx="2" fill="#0B1220" stroke="#38BDF8" stroke-width="1.5"/>
+<path d="M-18 -34V-12M-6 -34V-12M6 -34V-12M-18 12V34M-6 12V34M6 12V34" stroke="#38BDF8" stroke-width=".8" opacity=".7"/>
+<ellipse cx="46" cy="0" rx="14" ry="4.5" fill="#38BDF8" opacity=".85"/>
+<rect x="-80" y="-5" width="12" height="10" rx="2" fill="#475569"/>
+</g></svg>

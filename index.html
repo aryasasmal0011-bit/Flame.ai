@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Flame.ai — Understanding fire. Beyond Earth.</title>
+  <meta name="description" content="Explore the science of combustion in microgravity. Discover NASA's fire experiments and unlock AI-powered insights for safer human space exploration." />
+  <meta name="theme-color" content="#030712" />
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg" />
+
+  <!-- Fonts: optional enhancement. If offline, the CSS fallback stacks are used. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet" />
+
+  <script>document.documentElement.classList.add("js");</script>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="is-loading">
+
+  <!-- ============ SVG SPRITE (inline icons, no external dependency) ============ -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <linearGradient id="flameGrad" x1="0" y1="1" x2="1" y2="0">
+        <stop offset="0" stop-color="#FF3B30" /><stop offset="1" stop-color="#FFA733" />
+      </linearGradient>
+      <symbol id="i-flame" viewBox="0 0 64 64">
+        <path fill="url(#flameGrad)" d="M30 4c4 4 8 9 6 16-2 7-9 12-14 20-3 5-3 11 0 16C14 51 8 42 14 31 20 20 31 15 30 4Z"/>
+        <path fill="url(#flameGrad)" d="M44 26c3 3 5 7 3 12-2 5-8 8-11 13-2 4-1 8 2 11-7-3-11-10-7-18 3-6 11-8 13-18Z"/>
+      </symbol>
+      <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="i-compass" viewBox="0 0 48 48"><circle cx="24" cy="24" r="19" fill="none" stroke="currentColor" stroke-width="2"/><path d="M31 17l-4.5 10-10 4.5L21 21.5 31 17Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M24 2v4M24 42v4M2 24h4M42 24h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+      <symbol id="i-chart" viewBox="0 0 48 48"><path d="M7 7v34h34" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 31l8-9 7 5 11-15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="14" cy="31" r="2" fill="currentColor"/><circle cx="22" cy="22" r="2" fill="currentColor"/><circle cx="29" cy="27" r="2" fill="currentColor"/><circle cx="40" cy="12" r="2" fill="currentColor"/></symbol>
+      <symbol id="i-spark" viewBox="0 0 48 48"><path d="M24 5l4.2 12.8L41 22l-12.8 4.2L24 39l-4.2-12.8L7 22l12.8-4.2L24 5Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M38 33v8M34 37h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+      <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+      <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+    </defs>
+  </svg>
+
+  <!-- ============ LOADER ============ -->
+  <div class="loader" id="loader" role="status" aria-label="Loading Flame.ai">
+    <div class="loader__inner">
+      <img src="assets/images/logo.jpg" alt="Flame.ai" width="220" height="220" class="loader__logo" />
+      <div class="loader__bar"><span></span></div>
+    </div>
+  </div>
+
+  <!-- ============ BACKGROUND LAYERS ============ -->
+  <canvas id="space" aria-hidden="true"></canvas>
+  <div class="ship-layer" id="shipLayer" aria-hidden="true">
+    <img src="assets/animations/spacecraft.svg" alt="" class="ship" id="ship" width="360" height="100" />
+  </div>
+  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+
+  <!-- ============ HEADER ============ -->
+  <header class="site-header" id="siteHeader">
+    <a class="brand" href="#top" aria-label="Flame.ai home">
+      <svg class="brand__mark" aria-hidden="true"><use href="#i-flame"/></svg>
+      <span class="brand__name">Flame<span>.ai</span></span>
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mainNav" aria-label="Open menu">
+      <svg class="nav-toggle__open" aria-hidden="true"><use href="#i-menu"/></svg>
+      <svg class="nav-toggle__close" aria-hidden="true"><use href="#i-close"/></svg>
+    </button>
+    <nav class="main-nav" id="mainNav" aria-label="Primary">
+      <a href="#navigate" data-scroll>Explorers</a>
+      <a href="#about" data-scroll>About</a>
+      <a href="#science" data-scroll>The science</a>
+      <a href="#" data-link="bass" class="main-nav__cta">Open BASS</a>
+    </nav>
+  </header>
+
+  <main id="top">
+
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="hero" data-psection>
+      <div class="hero__scene" aria-hidden="true">
+        <div class="px" data-parallax="0.05"><div class="nebula nebula--blue"></div></div>
+        <div class="px" data-parallax="0.09"><div class="nebula nebula--orange"></div></div>
+        <div class="px planet-wrap" data-parallax="0.22">
+          <div class="planet">
+            <div class="planet__surface"></div>
+            <div class="planet__atmos"></div>
+          </div>
+          <div class="ring ring--a"><span class="ring__moon"></span></div>
+          <div class="ring ring--b"></div>
+        </div>
+        <div class="px" data-parallax="0.32"><div class="moon"></div></div>
+      </div>
+
+      <div class="hero__content">
+        <p class="hero__brand reveal"><svg aria-hidden="true"><use href="#i-flame"/></svg> FLAME.AI</p>
+        <h1 class="hero__title">
+          <span class="line line--1">UNDERSTANDING FIRE.</span>
+          <span class="line line--2">BEYOND EARTH.</span>
+        </h1>
+        <p class="hero__lead reveal">Explore the science of combustion in microgravity. Discover NASA's fire experiments and unlock AI-powered insights for safer human space exploration.</p>
+        <div class="hero__actions reveal">
+          <a class="btn btn--primary" href="#navigate" data-scroll>
+            <span>EXPLORE THE UNIVERSE</span>
+            <svg aria-hidden="true"><use href="#i-arrow"/></svg>
+          </a>
+          <a class="btn btn--ghost" href="#about" data-scroll>
+            <span>DISCOVER FLAME.AI</span>
+          </a>
+        </div>
+      </div>
+
+      <a class="scroll-cue" href="#navigate" data-scroll aria-label="Scroll to explorers"><span></span></a>
+    </section>
+
+    <!-- ============ THREE NAVIGATION CARDS ============ -->
+    <section class="section cards" id="navigate">
+      <div class="container">
+        <header class="section__head reveal">
+          <h2>Choose your destination</h2>
+          <p>Three doors into the same body of research. Each opens the Flame.ai application.</p>
+        </header>
+
+        <div class="cards__grid">
+
+          <!-- Card 1 · BASS -->
+          <a class="card card--bass reveal" href="#" data-link="bass" aria-label="BASS Explorer: discover the science behind burning and combustion in microgravity">
+            <div class="card__media"><img src="assets/images/card-bass.svg" alt="" width="800" height="600" loading="lazy" /></div>
+            <div class="card__fx" aria-hidden="true">
+              <span class="ember e1"></span><span class="ember e2"></span><span class="ember e3"></span><span class="ember e4"></span><span class="ember e5"></span>
+            </div>
+            <div class="card__shade"></div>
+            <div class="card__body">
+              <h3>BASS EXPLORER</h3>
+              <p>Discover the science behind burning and combustion in microgravity.</p>
+              <span class="card__btn">EXPLORE BASS <svg aria-hidden="true"><use href="#i-arrow"/></svg></span>
+            </div>
+          </a>
+
+          <!-- Card 2 · FLEX -->
+          <a class="card card--flex reveal" href="#" data-link="flex" aria-label="FLEX Explorer: explore flame behavior, combustion dynamics, and experimental discoveries">
+            <div class="card__media"><img src="assets/images/card-flex.svg" alt="" width="800" height="600" loading="lazy" /></div>
+            <div class="card__fx" aria-hidden="true"><span class="flex-glow"></span></div>
+            <div class="card__shade"></div>
+            <div class="card__body">
+              <h3>FLEX EXPLORER</h3>
+              <p>Explore flame behavior, combustion dynamics, and experimental discoveries.</p>
+              <span class="card__btn">EXPLORE FLEX <svg aria-hidden="true"><use href="#i-arrow"/></svg></span>
+            </div>
+          </a>
+
+          <!-- Card 3 · AI -->
+          <a class="card card--ai reveal" href="#" data-link="ai" aria-label="AI Research Assistant: ask questions, discover patterns, transform scientific data into insights">
+            <div class="card__media"><img src="assets/images/card-ai.svg" alt="" width="800" height="600" loading="lazy" /></div>
+            <div class="card__fx" aria-hidden="true">
+              <span class="orb"></span><span class="orb orb--ring"></span>
+              <span class="mote m1"></span><span class="mote m2"></span><span class="mote m3"></span><span class="mote m4"></span>
+            </div>
+            <div class="card__shade"></div>
+            <div class="card__body">
+              <h3>AI RESEARCH ASSISTANT</h3>
+              <p>Ask questions. Discover patterns. Transform scientific data into insights.</p>
+              <span class="card__btn">LAUNCH AI ASSISTANT <svg aria-hidden="true"><use href="#i-arrow"/></svg></span>
+            </div>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ABOUT ============ -->
+    <section class="section about" id="about" data-psection>
+      <div class="px about__planet" data-parallax="0.14" aria-hidden="true"><div class="small-planet"></div></div>
+      <div class="container about__grid">
+        <div class="about__intro reveal">
+          <h2>IGNITING DISCOVERY. PROTECTING THE FUTURE.</h2>
+          <p>Flame.ai transforms complex NASA microgravity fire experiment data into accessible scientific knowledge. Researchers, students and curious minds can move from raw experiment records to clear explanations, comparisons and answers.</p>
+          <p>Understanding how fire behaves away from Earth is part of keeping future crews safe. Flame.ai exists to make that understanding easier to reach.</p>
+        </div>
+
+        <ul class="caps">
+          <li class="cap reveal">
+            <span class="cap__icon"><svg aria-hidden="true"><use href="#i-compass"/></svg></span>
+            <div>
+              <h3>EXPLORE</h3>
+              <p>Navigate NASA's BASS and FLEX experiments.</p>
+            </div>
+          </li>
+          <li class="cap reveal">
+            <span class="cap__icon"><svg aria-hidden="true"><use href="#i-chart"/></svg></span>
+            <div>
+              <h3>ANALYZE</h3>
+              <p>Understand experimental findings and combustion behavior.</p>
+            </div>
+          </li>
+          <li class="cap reveal">
+            <span class="cap__icon"><svg aria-hidden="true"><use href="#i-spark"/></svg></span>
+            <div>
+              <h3>DISCOVER</h3>
+              <p>Use AI assistance to interpret scientific insights.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ SCIENCE SHOWCASE ============ -->
+    <section class="section science" id="science">
+      <div class="container">
+        <header class="section__head reveal">
+          <h2>FIRE BEHAVES DIFFERENTLY IN SPACE.</h2>
+          <p>On Earth, gravity makes hot gas rise. Take gravity-driven buoyancy and convection away, and a flame is free to behave in ways we rarely see at home.</p>
+        </header>
+
+        <div class="split reveal">
+          <!-- Earth -->
+          <figure class="split__pane split__pane--earth">
+            <div class="split__stage">
+              <svg viewBox="0 0 320 360" role="img" aria-label="Illustration of a teardrop-shaped flame stretching upward on Earth">
+                <defs>
+                  <radialGradient id="eGlow" cx="50%" cy="70%" r="55%"><stop offset="0" stop-color="#FF6B35" stop-opacity=".45"/><stop offset="1" stop-color="#FF6B35" stop-opacity="0"/></radialGradient>
+                  <linearGradient id="eOuter" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#FF6B35"/><stop offset="1" stop-color="#FFC15E"/></linearGradient>
+                </defs>
+                <ellipse cx="160" cy="220" rx="140" ry="150" fill="url(#eGlow)"/>
+                <rect x="140" y="292" width="40" height="46" rx="6" fill="#1E293B" stroke="#475569"/>
+                <line x1="160" y1="292" x2="160" y2="280" stroke="#94A3B8" stroke-width="2"/>
+                <g class="flame-earth">
+                  <path d="M160 70 C 178 120, 214 160, 204 220 C 198 258, 178 282, 160 284 C 142 282, 122 258, 116 220 C 106 160, 142 120, 160 70 Z" fill="url(#eOuter)"/>
+                  <path d="M160 140 C 174 175, 190 200, 184 236 C 180 260, 169 274, 160 275 C 151 274, 140 260, 136 236 C 130 200, 146 175, 160 140 Z" fill="#FFE6A8"/>
+                  <ellipse cx="160" cy="268" rx="17" ry="10" fill="#38BDF8" opacity=".85"/>
+                </g>
+                <g class="flow flow--up" stroke="#38BDF8" stroke-width="2" fill="none" stroke-linecap="round" opacity=".8">
+                  <path d="M96 250 C 84 200, 96 150, 118 110"/><path d="M224 250 C 236 200, 224 150, 202 110"/>
+                  <path d="M118 110 l-1 -10 m1 10 l9 -4"/><path d="M202 110 l1 -10 m-1 10 l-9 -4"/>
+                </g>
+              </svg>
+            </div>
+            <figcaption>
+              <h3>Combustion on Earth</h3>
+              <p>Buoyancy lifts hot gases away from the flame and pulls fresh air in beneath it. That steady convection gives flames their familiar teardrop shape.</p>
+            </figcaption>
+          </figure>
+
+          <div class="split__divider" aria-hidden="true"><span>VS</span></div>
+
+          <!-- Microgravity -->
+          <figure class="split__pane split__pane--micro">
+            <div class="split__stage">
+              <svg viewBox="0 0 320 360" role="img" aria-label="Illustration of a rounded flame floating in microgravity with symmetric outward flow">
+                <defs>
+                  <radialGradient id="mGlow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#38BDF8" stop-opacity=".35"/><stop offset=".6" stop-color="#FF6B35" stop-opacity=".15"/><stop offset="1" stop-color="#38BDF8" stop-opacity="0"/></radialGradient>
+                  <radialGradient id="mCore" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#FFF4D6"/><stop offset=".35" stop-color="#FFC15E"/><stop offset=".75" stop-color="#FF6B35"/><stop offset="1" stop-color="#FF6B35" stop-opacity=".55"/></radialGradient>
+                </defs>
+                <circle cx="160" cy="180" r="150" fill="url(#mGlow)"/>
+                <circle class="halo" cx="160" cy="180" r="92" fill="none" stroke="#38BDF8" stroke-width="1.5" stroke-dasharray="4 8" opacity=".6"/>
+                <g class="flame-micro">
+                  <circle cx="160" cy="180" r="62" fill="url(#mCore)"/>
+                  <circle cx="160" cy="180" r="34" fill="#FFF4D6" opacity=".75"/>
+                </g>
+                <g class="flow flow--out" stroke="#38BDF8" stroke-width="2" stroke-linecap="round" opacity=".8">
+                  <path d="M160 96V70M160 264V290M76 180H50M244 180H270"/>
+                  <path d="M100 120L82 102M220 120L238 102M100 240L82 258M220 240L238 258"/>
+                </g>
+              </svg>
+            </div>
+            <figcaption>
+              <h3>Combustion in microgravity</h3>
+              <p>With buoyancy and convection greatly reduced, hot gases no longer rise away. Flames can take rounder forms and behave differently, which matters for fire safety on spacecraft.</p>
+            </figcaption>
+          </figure>
+        </div>
+
+        <p class="science__note reveal">Illustrations are conceptual. For measured results and experiment data, open the explorers above.</p>
+      </div>
+    </section>
+
+    <!-- ============ FINAL CTA ============ -->
+    <section class="section final" id="final" data-psection>
+      <div class="px final__horizon" data-parallax="-0.12" aria-hidden="true"><div class="horizon"></div></div>
+      <div class="container final__inner reveal">
+        <h2>THE FUTURE OF SPACE SAFETY STARTS WITH DISCOVERY.</h2>
+        <p>Explore the science. Understand the experiments. Build a safer future beyond Earth.</p>
+        <a class="btn btn--primary btn--lg" href="#navigate" data-scroll>
+          <span>START EXPLORING</span>
+          <svg aria-hidden="true"><use href="#i-arrow"/></svg>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="container footer__grid">
+      <div class="footer__brand">
+        <a class="brand" href="#top" aria-label="Flame.ai home">
+          <svg class="brand__mark" aria-hidden="true"><use href="#i-flame"/></svg>
+          <span class="brand__name">FLAME<span>.AI</span></span>
+        </a>
+        <p>AI-powered exploration of NASA microgravity fire experiments.</p>
+      </div>
+      <nav class="footer__nav" aria-label="Footer">
+        <a href="#" data-link="bass">BASS Explorer</a>
+        <a href="#" data-link="flex">FLEX Explorer</a>
+        <a href="#" data-link="ai">AI Assistant</a>
+      </nav>
+    </div>
+    <div class="container footer__legal">
+      <p>Developed for NASA Space Apps Challenge.</p>
+      <p>Flame.ai is an independent project. It is not an official NASA product and is not endorsed by NASA.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
