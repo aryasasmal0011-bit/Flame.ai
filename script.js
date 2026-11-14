@@ -16,11 +16,11 @@
    --------------------------------------------------------------------- */
 const FLAME_CONFIG = {
   links: {
-    bass: "https://flameai-sojkds8mytpjfhhrf2j7vg.streamlit.app/",
-    flex: "https://flameai-jg8caz4bkcypvtlhnggmot.streamlit.app/",
-    ai:   "https://flameai-invai86n2bk2tscqndidax.streamlit.app/"
+    bass: "https://flameai-sojkds8mytpjfhhrf2j7vg.streamlit.app",
+    flex: "https://flameai-jg8caz4bkcypvtlhnggmot.streamlit.app",
+    ai:   "https://flameai-invai86n2bk2tscqndidax.streamlit.app"
   },
-  openInNewTab: false
+  openInNewTab: true
 };
 
 (() => {
