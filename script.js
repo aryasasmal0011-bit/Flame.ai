@@ -16,9 +16,9 @@
    --------------------------------------------------------------------- */
 const FLAME_CONFIG = {
   links: {
-    bass: "[INSERT_BASS_STREAMLIT_URL]",
-    flex: "[INSERT_FLEX_STREAMLIT_URL]",
-    ai:   "[INSERT_AI_ASSISTANT_STREAMLIT_URL]"
+    bass: "https://flameai-sojkds8mytpjfhhrf2j7vg.streamlit.app/",
+    flex: "https://flameai-jg8caz4bkcypvtlhnggmot.streamlit.app/",
+    ai:   "https://flameai-invai86n2bk2tscqndidax.streamlit.app/"
   },
   openInNewTab: false
 };
