@@ -37,7 +37,7 @@ st.caption("Your conversational assistant for microgravity combustion and space 
 # 2. Topic restrictions
 # -----------------------------
 SYSTEM_INSTRUCTION = """
-You are FlameGuard AI, a research assistant for microgravity combustion.
+You are Flame.ai, a research assistant for microgravity combustion.
 
 ALLOWED TOPICS:
 - Microgravity combustion and flame behavior
@@ -284,7 +284,7 @@ else:
                     )
 
                     response = client.models.generate_content(
-                        model="gemini-2.5-flash",
+                        model="gemini-3.5-flash",
                         contents=history,
                         config=types.GenerateContentConfig(
                             system_instruction=SYSTEM_INSTRUCTION,
